@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SelectableShape.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pertinence_g2_9</a> &gt; <a href="index.source.html" class="el_package">edu.uga.miage.m1.polygons.gui.shapes</a> &gt; <span class="el_source">SelectableShape.java</span></div><h1>SelectableShape.java</h1><pre class="source lang-java linenums">package edu.uga.miage.m1.polygons.gui.shapes;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+
+<span class="fc" id="L8">public class SelectableShape {</span>
+<span class="fc" id="L9">  private boolean mSelected = false;</span>
+
+  public void select(Graphics2D g2, SimpleShape shape) {
+<span class="nc" id="L12">    mSelected = true;</span>
+<span class="nc" id="L13">    enableSelectionStyle(g2, shape);</span>
+<span class="nc" id="L14">  }</span>
+
+  public void unSelect(Graphics2D g2, SimpleShape shape) {
+<span class="nc" id="L17">    mSelected = false;</span>
+<span class="nc" id="L18">    disableSelectionStyle(g2, shape);</span>
+<span class="nc" id="L19">  }</span>
+
+  public boolean isSelected() {
+<span class="nc" id="L22">    return mSelected;</span>
+  }
+
+  public void selectOrUnSelect(Graphics2D g2, SimpleShape shape) {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (!mSelected) {</span>
+<span class="nc" id="L27">      select(g2, shape);</span>
+    } else {
+<span class="nc" id="L29">      unSelect(g2, shape);</span>
+    }
+<span class="nc" id="L31">  }</span>
+
+  void enableSelectionStyle(Graphics2D g2, SimpleShape shape) {
+<span class="nc" id="L34">    g2.setColor(Color.BLACK);</span>
+
+<span class="nc" id="L36">    float[] dash1 = { 2.0f };</span>
+<span class="nc" id="L37">    g2.setStroke( new BasicStroke(1.0f,</span>
+        BasicStroke.CAP_BUTT,
+        BasicStroke.JOIN_MITER,
+        2.0f, dash1, 0.0f));
+<span class="nc" id="L41">    g2.draw(new Rectangle2D.Double((shape.getX() - 2), (shape.getY() - 2), 54, 54));</span>
+<span class="nc" id="L42">  }</span>
+
+  void disableSelectionStyle(Graphics2D g2, SimpleShape shape) {
+<span class="nc" id="L45">    g2.setColor(Color.WHITE);</span>
+<span class="nc" id="L46">    g2.setStroke(new BasicStroke());</span>
+<span class="nc" id="L47">    g2.draw(new Rectangle2D.Double((shape.getX() - 2), (shape.getY() - 2), 54, 54));</span>
+<span class="nc" id="L48">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

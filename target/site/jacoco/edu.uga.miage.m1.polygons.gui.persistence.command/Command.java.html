@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Command.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pertinence_g2_9</a> &gt; <a href="index.source.html" class="el_package">edu.uga.miage.m1.polygons.gui.persistence.command</a> &gt; <span class="el_source">Command.java</span></div><h1>Command.java</h1><pre class="source lang-java linenums">package edu.uga.miage.m1.polygons.gui.persistence.command;
+
+import java.util.ArrayList;
+
+import org.apache.commons.lang3.SerializationUtils;
+
+import edu.uga.miage.m1.polygons.gui.JDrawingFrame;
+import edu.uga.miage.m1.polygons.gui.shapes.SimpleShape;
+
+public abstract class Command {
+  private ArrayList&lt;SimpleShape&gt; mBackup;
+  protected JDrawingFrame mDrawingFrame;
+
+<span class="fc" id="L14">  Command(JDrawingFrame jdf) {</span>
+<span class="fc" id="L15">    mDrawingFrame = jdf;</span>
+<span class="fc" id="L16">    mBackup = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L17">  }</span>
+
+  /**
+   * Deep copying drawnShapes in backup
+   */
+  public void backup() {
+<span class="nc" id="L23">    mBackup = SerializationUtils.clone((ArrayList&lt;SimpleShape&gt;) mDrawingFrame.getDrawnShapes());</span>
+<span class="nc" id="L24">  }</span>
+
+  public void undo() {
+<span class="nc" id="L27">    mDrawingFrame.resetPanel();</span>
+<span class="nc" id="L28">    mDrawingFrame.setDrawnShapes(mBackup);</span>
+<span class="nc" id="L29">    mDrawingFrame.drawAllShapes();</span>
+
+<span class="nc" id="L31">  }</span>
+
+  public int getBackupSize() {
+<span class="nc" id="L34">    return mBackup.size();</span>
+  }
+
+  public abstract void execute();
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

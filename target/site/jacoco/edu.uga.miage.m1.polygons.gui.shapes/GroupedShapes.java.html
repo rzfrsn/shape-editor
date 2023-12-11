@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GroupedShapes.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pertinence_g2_9</a> &gt; <a href="index.source.html" class="el_package">edu.uga.miage.m1.polygons.gui.shapes</a> &gt; <span class="el_source">GroupedShapes.java</span></div><h1>GroupedShapes.java</h1><pre class="source lang-java linenums">package edu.uga.miage.m1.polygons.gui.shapes;
+
+import java.awt.Graphics2D;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.uga.miage.m1.polygons.gui.persistence.visitor.Visitable;
+import edu.uga.miage.m1.polygons.gui.persistence.visitor.Visitor;
+
+public class GroupedShapes extends SelectableShape implements SimpleShape, Visitable {
+  private static final long serialVersionUID = 1234L;
+<span class="nc" id="L12">  private List&lt;SimpleShape&gt; mShapes = new ArrayList&lt;&gt;();</span>
+  private int mX;
+  private int mY;
+
+<span class="nc" id="L16">  public GroupedShapes(List&lt;SimpleShape&gt; shapes) {</span>
+<span class="nc" id="L17">    add(shapes);</span>
+<span class="nc" id="L18">    initX();</span>
+<span class="nc" id="L19">    initY();</span>
+<span class="nc" id="L20">  }</span>
+
+  public List&lt;SimpleShape&gt; getShapes() {
+<span class="nc" id="L23">    return mShapes;</span>
+  }
+
+  public void add(SimpleShape shape) {
+<span class="nc" id="L27">    mShapes.add(shape);</span>
+<span class="nc" id="L28">  }</span>
+
+  public void add(List&lt;SimpleShape&gt; shapes) {
+<span class="nc" id="L31">    mShapes.addAll(shapes);</span>
+<span class="nc" id="L32">  }</span>
+
+  @Override
+  public void select(Graphics2D g2, SimpleShape shape) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    for (SimpleShape s : mShapes) {</span>
+<span class="nc" id="L37">      SelectableShape selectable = (SelectableShape) s;</span>
+<span class="nc" id="L38">      selectable.select(g2, s);</span>
+<span class="nc" id="L39">    }</span>
+<span class="nc" id="L40">  }</span>
+
+  @Override
+  public void unSelect(Graphics2D g2, SimpleShape shape) {
+<span class="nc bnc" id="L44" title="All 2 branches missed.">    for (SimpleShape s : mShapes) {</span>
+<span class="nc" id="L45">      SelectableShape selectable = (SelectableShape) s;</span>
+<span class="nc" id="L46">      selectable.unSelect(g2, s);</span>
+<span class="nc" id="L47">    }</span>
+<span class="nc" id="L48">  }</span>
+
+  @Override
+  public void selectOrUnSelect(Graphics2D g2, SimpleShape shape) {
+<span class="nc bnc" id="L52" title="All 2 branches missed.">    if (!super.isSelected()) {</span>
+<span class="nc" id="L53">      select(g2, shape);</span>
+    } else {
+<span class="nc" id="L55">      unSelect(g2, shape);</span>
+    }
+<span class="nc" id="L57">  }</span>
+
+  @Override
+  public boolean isSelected() {
+<span class="nc" id="L61">    boolean selected = true;</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">    for (SimpleShape s : mShapes) {</span>
+<span class="nc" id="L63">      SelectableShape selectable = (SelectableShape) s;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">      if (!selectable.isSelected()) {</span>
+<span class="nc" id="L65">        selected = false;</span>
+<span class="nc" id="L66">        break;</span>
+      }
+<span class="nc" id="L68">    }</span>
+
+<span class="nc" id="L70">    return selected;</span>
+  }
+
+  public void remove(List&lt;SimpleShape&gt; shapes) {
+<span class="nc" id="L74">    mShapes.removeAll(shapes);</span>
+<span class="nc" id="L75">  }</span>
+
+  public void clear() {
+<span class="nc" id="L78">    mShapes.clear();</span>
+<span class="nc" id="L79">  }</span>
+
+  public void initX() {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">    if (mShapes.isEmpty()) {</span>
+<span class="nc" id="L83">      mX = 0;</span>
+    } else {
+<span class="nc" id="L85">      mX = mShapes.get(0).getX();</span>
+    }
+<span class="nc" id="L87">  }</span>
+
+  public void initY() {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    if (mShapes.isEmpty()) {</span>
+<span class="nc" id="L91">      mY = 0;</span>
+    } else {
+<span class="nc" id="L93">      mY = mShapes.get(0).getY();</span>
+    }
+<span class="nc" id="L95">  }</span>
+
+  @Override
+  public void move(int x, int y) {
+<span class="nc bnc" id="L99" title="All 2 branches missed.">    for (SimpleShape shape : mShapes) {</span>
+<span class="nc" id="L100">      int deltaX = shape.getX() - getX();</span>
+<span class="nc" id="L101">      int deltaY = shape.getY() - getY();</span>
+<span class="nc" id="L102">      int finalX = deltaX + x;</span>
+<span class="nc" id="L103">      int finalY = deltaY + y;</span>
+
+<span class="nc" id="L105">      shape.move(finalX, finalY);</span>
+<span class="nc" id="L106">    }</span>
+
+<span class="nc" id="L108">    initX();</span>
+<span class="nc" id="L109">    initY();</span>
+<span class="nc" id="L110">  }</span>
+
+  @Override
+  public boolean cursorIsOnShape(int x, int y) {
+<span class="nc" id="L114">    boolean isOnShape = false;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">    for (SimpleShape s : mShapes) {</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">      if (s.cursorIsOnShape(x, y)) {</span>
+<span class="nc" id="L117">        isOnShape = true;</span>
+      }
+<span class="nc" id="L119">    }</span>
+<span class="nc" id="L120">    return isOnShape;</span>
+  }
+
+  @Override
+  public void draw(Graphics2D g2) {
+<span class="nc" id="L125">    mShapes.forEach(s -&gt; s.draw(g2));</span>
+<span class="nc" id="L126">  }</span>
+
+  @Override
+  public int getX() {
+<span class="nc" id="L130">    return mX;</span>
+  }
+
+  @Override
+  public int getY() {
+<span class="nc" id="L135">    return mY;</span>
+  }
+
+  @Override
+  public void accept(Visitor visitor) {
+<span class="nc" id="L140">    visitor.visit(this);</span>
+<span class="nc" id="L141">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
