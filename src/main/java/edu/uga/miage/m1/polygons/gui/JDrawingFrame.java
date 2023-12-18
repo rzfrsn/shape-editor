@@ -298,7 +298,7 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 
 					for (SimpleShape s : mDrawnShapes) {
 						AppShapeAdapter simpleShapeAdapter = new AppShapeAdapter(s);
-						list.add((com.persistence.json.shape.shapes.SimpleShape) simpleShapeAdapter);
+						list.add(simpleShapeAdapter);
 					}
 
 					try {
