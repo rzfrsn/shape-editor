@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.uga.miage.m1.polygons.gui.persistence.visitor.JSonVisitor;
-import edu.uga.miage.m1.polygons.gui.persistence.visitor.XMLVisitor;
-import edu.uga.miage.m1.polygons.gui.shapes.Circle;
 import edu.uga.miage.m1.polygons.gui.shapes.Cube;
 
-public class CubeTest {
+class CubeTest {
   @Test
   void testGetX() {
     final int x = 10;

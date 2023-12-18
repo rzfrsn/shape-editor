@@ -13,7 +13,7 @@ import edu.uga.miage.m1.polygons.gui.shapes.GroupedShapes;
 import edu.uga.miage.m1.polygons.gui.shapes.SimpleShape;
 import edu.uga.miage.m1.polygons.gui.shapes.Square;
 
-public class GroupedShapesTest {
+class GroupedShapesTest {
   @Test
   void testGetX() {
     List<SimpleShape> list = new ArrayList<>();
