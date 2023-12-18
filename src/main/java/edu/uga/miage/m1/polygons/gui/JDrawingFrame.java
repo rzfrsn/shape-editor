@@ -322,9 +322,8 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 
 						mDrawnShapes.clear();
 						shapes.forEach(s -> {
-							System.out.println(s);
 							ReaderShapeAdapter rsAdapter = new ReaderShapeAdapter(s);
-							mDrawnShapes.add((SimpleShape) rsAdapter);
+							mDrawnShapes.add(rsAdapter);
 						});
 
 						resetPanel();
