@@ -125,8 +125,8 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 
 		// Add other action btns in the menu
 		addButtonOnToolbar(mSecondToolbar, GROUP_SHAPES, createImageIcon("group.png"), new SecondToolBarBtnListener());
-		addButtonOnToolbar(mSecondToolbar, IMPORT_JSON, createImageIcon("xml.png"), new SecondToolBarBtnListener());
-		addButtonOnToolbar(mSecondToolbar, EXPORT_JSON, createImageIcon("json.png"), new SecondToolBarBtnListener());
+		addButtonOnToolbar(mSecondToolbar, IMPORT_JSON, createImageIcon("import.png"), new SecondToolBarBtnListener());
+		addButtonOnToolbar(mSecondToolbar, EXPORT_JSON, createImageIcon("export.png"), new SecondToolBarBtnListener());
 
 		// set window size
 		setPreferredSize(new Dimension(500, 500));
@@ -303,8 +303,11 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 
 					try {
 						jsonPersistence.exportJSON(list);
+						StringBuilder infoMsg = new StringBuilder("Exported successfully at downloads/allShapes.json");
+						displayInfoMsg(infoMsg);
 					} catch (IOException e) {
-						e.printStackTrace();
+						StringBuilder infoMsg = new StringBuilder("An Error occured during export");
+						displayInfoMsg(infoMsg);
 					}
 
 					break;
@@ -313,6 +316,10 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 					try {
 						JsonPersistence jsonReader = JsonPersistence.getInstance();
 						List<com.persistence.json.shape.shapes.SimpleShape> shapes = jsonReader.importJSON();
+
+						StringBuilder infoMsg = new StringBuilder("JSON file imported successfully.");
+						displayInfoMsg(infoMsg);
+
 						mDrawnShapes.clear();
 						shapes.forEach(s -> {
 							System.out.println(s);
@@ -324,7 +331,8 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 						drawAllShapes();
 
 					} catch (FileNotFoundException e) {
-						e.printStackTrace();
+						StringBuilder infoMsg = new StringBuilder("An error occured during import.");
+						displayInfoMsg(infoMsg);
 					}
 
 					break;

@@ -1,4 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: persistence.CommandHistoryTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.976 s - in persistence.CommandHistoryTest
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.383 s <<< FAILURE! - in persistence.CommandHistoryTest
+persistence.CommandHistoryTest.testPop  Time elapsed: 0.304 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.net.URL.toExternalForm()" because "location" is null
+	at persistence.CommandHistoryTest.testPop(CommandHistoryTest.java:28)
+
+persistence.CommandHistoryTest.testPush  Time elapsed: 0.076 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.net.URL.toExternalForm()" because "location" is null
+	at persistence.CommandHistoryTest.testPush(CommandHistoryTest.java:17)
+

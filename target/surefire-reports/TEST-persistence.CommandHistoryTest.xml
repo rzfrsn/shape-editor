@@ -1,82 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="persistence.CommandHistoryTest" time="0.976" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="persistence.CommandHistoryTest" time="0.383" tests="2" errors="2" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="20"/>
+    <property name="java.specification.version" value="21"/>
+    <property name="sonar.login" value="e930c8f283aa7ee1cb08eaf5a961a8722d07b99c"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
-    <property name="java.class.path" value="/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/test-classes:/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/classes:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.0/junit-jupiter-engine-5.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/platform/junit-platform-engine/1.4.0/junit-platform-engine-1.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.0/junit-jupiter-api-5.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/edu/uga/miage/m1/edu.uga.singleshape/1.0.1/edu.uga.singleshape-1.0.1.jar:"/>
+    <property name="java.class.path" value="/Users/tafita.raza/Documents/persistence/target/test-classes:/Users/tafita.raza/Documents/persistence/target/classes:/Users/tafita.raza/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.0/junit-jupiter-engine-5.4.0.jar:/Users/tafita.raza/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/Users/tafita.raza/.m2/repository/org/junit/platform/junit-platform-engine/1.4.0/junit-platform-engine-1.4.0.jar:/Users/tafita.raza/.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar:/Users/tafita.raza/.m2/repository/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar:/Users/tafita.raza/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.0/junit-jupiter-api-5.4.0.jar:/Users/tafita.raza/.m2/repository/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar:/Users/tafita.raza/.m2/repository/org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar:/Users/tafita.raza/.m2/repository/edu/uga/miage/m1/edu.uga.singleshape/1.0.1/edu.uga.singleshape-1.0.1.jar:/Users/tafita.raza/.m2/repository/com/persistence/json/shape/com.persistence.json.shape/1.0.0/com.persistence.json.shape-1.0.0.jar:"/>
     <property name="sun.awt.enableExtraMouseButtons" value="true"/>
-    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="Europe/Paris"/>
     <property name="os.name" value="Mac OS X"/>
-    <property name="java.vm.specification.version" value="20"/>
+    <property name="java.vm.specification.version" value="21"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="FR"/>
-    <property name="sun.boot.library.path" value="/Users/herisetraf.tafitasoarazafiarison/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_20.0.2.v20230801-2057/jre/lib"/>
-    <property name="sun.java.command" value="/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/surefire/surefirebooter5888853468489120770.jar /Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/surefire 2023-11-20T05-44-38_542-jvmRun1 surefire11667069161684560306tmp surefire_010339878799698398161tmp"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/tafita.raza/Documents/persistence/target/surefire/surefirebooter13473986232048449952.jar /Users/tafita.raza/Documents/persistence/target/surefire 2023-12-18T17-57-25_798-jvmRun1 surefire4201202660941283157tmp surefire_016136687556646240164tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/test-classes:/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/classes:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.0/junit-jupiter-engine-5.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/platform/junit-platform-engine/1.4.0/junit-platform-engine-1.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.0/junit-jupiter-api-5.4.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar:/Users/herisetraf.tafitasoarazafiarison/.m2/repository/edu/uga/miage/m1/edu.uga.singleshape/1.0.1/edu.uga.singleshape-1.0.1.jar:"/>
+    <property name="surefire.test.class.path" value="/Users/tafita.raza/Documents/persistence/target/test-classes:/Users/tafita.raza/Documents/persistence/target/classes:/Users/tafita.raza/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.0/junit-jupiter-engine-5.4.0.jar:/Users/tafita.raza/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/Users/tafita.raza/.m2/repository/org/junit/platform/junit-platform-engine/1.4.0/junit-platform-engine-1.4.0.jar:/Users/tafita.raza/.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar:/Users/tafita.raza/.m2/repository/org/junit/platform/junit-platform-commons/1.4.0/junit-platform-commons-1.4.0.jar:/Users/tafita.raza/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.0/junit-jupiter-api-5.4.0.jar:/Users/tafita.raza/.m2/repository/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar:/Users/tafita.raza/.m2/repository/org/apache/commons/commons-lang3/3.13.0/commons-lang3-3.13.0.jar:/Users/tafita.raza/.m2/repository/edu/uga/miage/m1/edu.uga.singleshape/1.0.1/edu.uga.singleshape-1.0.1.jar:/Users/tafita.raza/.m2/repository/com/persistence/json/shape/com.persistence.json.shape/1.0.0/com.persistence.json.shape-1.0.0.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="/Users/herisetraf.tafitasoarazafiarison"/>
+    <property name="user.home" value="/Users/tafita.raza"/>
     <property name="user.language" value="fr"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.version.date" value="2023-07-18"/>
-    <property name="java.home" value="/Users/herisetraf.tafitasoarazafiarison/.p2/pool/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.macosx.x86_64_20.0.2.v20230801-2057/jre"/>
+    <property name="java.version.date" value="2023-09-19"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk-21.jdk/Contents/Home"/>
     <property name="file.separator" value="/"/>
-    <property name="basedir" value="/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence"/>
-    <property name="style.color" value="always"/>
+    <property name="basedir" value="/Users/tafita.raza/Documents/persistence"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence/target/surefire/surefirebooter5888853468489120770.jar"/>
+    <property name="surefire.real.class.path" value="/Users/tafita.raza/Documents/persistence/target/surefire/surefirebooter13473986232048449952.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.runtime.version" value="20.0.2+9"/>
+    <property name="java.runtime.version" value="21+35-LTS-2513"/>
     <property name="user.name" value="herisetraf.tafitasoarazafiarison"/>
     <property name="stdout.encoding" value="UTF-8"/>
     <property name="path.separator" value=":"/>
-    <property name="os.version" value="14.0"/>
-    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="os.version" value="14.1.2"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
-    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="Temurin-20.0.2+9"/>
-    <property name="localRepository" value="/Users/herisetraf.tafitasoarazafiarison/.m2/repository"/>
-    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="/Users/tafita.raza/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
     <property name="java.io.tmpdir" value="/var/folders/9r/4stxvhc12450wmjsd086k__m0000gn/T/"/>
-    <property name="java.version" value="20.0.2"/>
-    <property name="user.dir" value="/Users/herisetraf.tafitasoarazafiarison/eclipse-workspace/persistence"/>
-    <property name="os.arch" value="x86_64"/>
+    <property name="java.version" value="21"/>
+    <property name="user.dir" value="/Users/tafita.raza/Documents/persistence"/>
+    <property name="os.arch" value="aarch64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="native.encoding" value="UTF-8"/>
-    <property name="java.library.path" value="/Users/herisetraf.tafitasoarazafiarison/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
-    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.library.path" value="/Users/tafita.raza/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="UTF-8"/>
-    <property name="java.vendor" value="Eclipse Adoptium"/>
-    <property name="java.vm.version" value="20.0.2+9"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21+35-LTS-2513"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="java.class.version" value="64.0"/>
+    <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testPop" classname="persistence.CommandHistoryTest" time="0.855">
+  <testcase name="testPop" classname="persistence.CommandHistoryTest" time="0.304">
+    <error type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "java.net.URL.toExternalForm()" because "location" is null
+	at persistence.CommandHistoryTest.testPop(CommandHistoryTest.java:28)
+]]></error>
     <system-err><![CDATA[java.lang.instrument.IllegalClassFormatException: Error while instrumenting sun/util/resources/cldr/provider/CLDRLocaleDataMetaInfo.
 	at org.jacoco.agent.rt.internal_3570298.CoverageTransformer.transform(CoverageTransformer.java:94)
 	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:244)
 	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
-	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:541)
-	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1013)
-	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1091)
+	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:610)
+	at java.base/java.lang.ClassLoader.defineClass2(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1118)
 	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:182)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:821)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassInModuleOrNull(BuiltinClassLoader.java:741)
 	at java.base/jdk.internal.loader.BuiltinClassLoader.findClass(BuiltinClassLoader.java:621)
-	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:633)
-	at java.base/java.lang.Class.forName(Class.java:585)
-	at java.base/java.lang.Class.forName(Class.java:560)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:638)
+	at java.base/java.lang.Class.forName(Class.java:625)
+	at java.base/java.lang.Class.forName(Class.java:600)
 	at java.base/java.util.ServiceLoader.loadProvider(ServiceLoader.java:859)
 	at java.base/java.util.ServiceLoader$ModuleServicesLookupIterator.hasNext(ServiceLoader.java:1084)
 	at java.base/java.util.ServiceLoader$2.hasNext(ServiceLoader.java:1309)
@@ -84,14 +82,14 @@
 	at java.base/sun.util.cldr.CLDRLocaleProviderAdapter.lambda$new$0(CLDRLocaleProviderAdapter.java:84)
 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
 	at java.base/sun.util.cldr.CLDRLocaleProviderAdapter.<init>(CLDRLocaleProviderAdapter.java:83)
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:500)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:484)
-	at java.base/sun.util.locale.provider.LocaleProviderAdapter.forType(LocaleProviderAdapter.java:189)
-	at java.base/sun.util.locale.provider.LocaleProviderAdapter.findAdapter(LocaleProviderAdapter.java:288)
-	at java.base/sun.util.locale.provider.LocaleProviderAdapter.getAdapter(LocaleProviderAdapter.java:259)
-	at java.base/java.util.Calendar.createCalendar(Calendar.java:1687)
-	at java.base/java.util.Calendar.getInstance(Calendar.java:1655)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at java.base/sun.util.locale.provider.LocaleProviderAdapter.forType(LocaleProviderAdapter.java:194)
+	at java.base/sun.util.locale.provider.LocaleProviderAdapter.findAdapter(LocaleProviderAdapter.java:293)
+	at java.base/sun.util.locale.provider.LocaleProviderAdapter.getAdapter(LocaleProviderAdapter.java:264)
+	at java.base/java.util.Calendar.createCalendar(Calendar.java:1696)
+	at java.base/java.util.Calendar.getInstance(Calendar.java:1663)
 	at java.base/java.text.SimpleDateFormat.initializeCalendar(SimpleDateFormat.java:680)
 	at java.base/java.text.SimpleDateFormat.<init>(SimpleDateFormat.java:624)
 	at java.base/sun.net.www.protocol.file.FileURLConnection.initializeHeaders(FileURLConnection.java:120)
@@ -105,16 +103,20 @@ Caused by: java.io.IOException: Error while instrumenting sun/util/resources/cld
 	at org.jacoco.agent.rt.internal_3570298.core.instr.Instrumenter.instrumentError(Instrumenter.java:160)
 	at org.jacoco.agent.rt.internal_3570298.core.instr.Instrumenter.instrument(Instrumenter.java:110)
 	at org.jacoco.agent.rt.internal_3570298.CoverageTransformer.transform(CoverageTransformer.java:92)
-	... 37 more
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 64
+	... 36 more
+Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 65
 	at org.jacoco.agent.rt.internal_3570298.asm.ClassReader.<init>(ClassReader.java:196)
 	at org.jacoco.agent.rt.internal_3570298.asm.ClassReader.<init>(ClassReader.java:177)
 	at org.jacoco.agent.rt.internal_3570298.asm.ClassReader.<init>(ClassReader.java:163)
 	at org.jacoco.agent.rt.internal_3570298.core.internal.instr.InstrSupport.classReaderFor(InstrSupport.java:280)
 	at org.jacoco.agent.rt.internal_3570298.core.instr.Instrumenter.instrument(Instrumenter.java:76)
 	at org.jacoco.agent.rt.internal_3570298.core.instr.Instrumenter.instrument(Instrumenter.java:108)
-	... 38 more
+	... 37 more
 ]]></system-err>
   </testcase>
-  <testcase name="testPush" classname="persistence.CommandHistoryTest" time="0.095"/>
+  <testcase name="testPush" classname="persistence.CommandHistoryTest" time="0.076">
+    <error type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "java.net.URL.toExternalForm()" because "location" is null
+	at persistence.CommandHistoryTest.testPush(CommandHistoryTest.java:17)
+]]></error>
+  </testcase>
 </testsuite>

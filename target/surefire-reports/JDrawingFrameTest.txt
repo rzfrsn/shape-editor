@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: JDrawingFrameTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.083 s - in JDrawingFrameTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.076 s <<< FAILURE! - in JDrawingFrameTest
+JDrawingFrameTest.testSetDrawnShapes  Time elapsed: 0.075 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "java.net.URL.toExternalForm()" because "location" is null
+	at JDrawingFrameTest.testSetDrawnShapes(JDrawingFrameTest.java:15)
+
