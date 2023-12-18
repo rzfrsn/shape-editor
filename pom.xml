@@ -34,6 +34,11 @@
 			<artifactId>edu.uga.singleshape</artifactId>
 			<version>1.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.persistence.json.shape</groupId>
+			<artifactId>com.persistence.json.shape</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

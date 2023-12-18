@@ -14,25 +14,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.json.JsonValue;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -40,25 +31,16 @@ import javax.swing.JPanel;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
+import com.persistence.json.shape.JsonPersistence;
 
+import edu.uga.miage.m1.polygons.gui.persistence.adapter.AppShapeAdapter;
+import edu.uga.miage.m1.polygons.gui.persistence.adapter.ReaderShapeAdapter;
 import edu.uga.miage.m1.polygons.gui.persistence.command.AddShapeCommand;
 import edu.uga.miage.m1.polygons.gui.persistence.command.Command;
 import edu.uga.miage.m1.polygons.gui.persistence.command.CommandHistory;
 import edu.uga.miage.m1.polygons.gui.persistence.command.GroupShapeCommand;
 import edu.uga.miage.m1.polygons.gui.persistence.command.MoveShapeCommand;
-import edu.uga.miage.m1.polygons.gui.persistence.visitor.JSonVisitor;
-import edu.uga.miage.m1.polygons.gui.persistence.visitor.Visitable;
-import edu.uga.miage.m1.polygons.gui.persistence.visitor.XMLVisitor;
 import edu.uga.miage.m1.polygons.gui.shapes.GroupedShapes;
 import edu.uga.miage.m1.polygons.gui.shapes.SelectableShape;
 import edu.uga.miage.m1.polygons.gui.shapes.ShapeFactory;
@@ -143,8 +125,8 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 
 		// Add other action btns in the menu
 		addButtonOnToolbar(mSecondToolbar, GROUP_SHAPES, createImageIcon("group.png"), new SecondToolBarBtnListener());
+		addButtonOnToolbar(mSecondToolbar, IMPORT_JSON, createImageIcon("xml.png"), new SecondToolBarBtnListener());
 		addButtonOnToolbar(mSecondToolbar, EXPORT_JSON, createImageIcon("json.png"), new SecondToolBarBtnListener());
-		addButtonOnToolbar(mSecondToolbar, EXPORT_XML, createImageIcon("xml.png"), new SecondToolBarBtnListener());
 
 		// set window size
 		setPreferredSize(new Dimension(500, 500));
@@ -300,51 +282,6 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 	}
 
 	private class SecondToolBarBtnListener implements ActionListener {
-		private void writeJsonInFile(JsonObject jsonObject, String filePath) {
-			try (FileWriter fileWriter = new FileWriter(filePath)) {
-				fileWriter.write(jsonObject.toString());
-				StringBuilder infoMsg = new StringBuilder("Exported successfully into a JSON file at : ");
-				infoMsg.append(filePath);
-				displayInfoMsg(infoMsg);
-			} catch (IOException e) {
-				LOGGER.warning(e.getMessage());
-			}
-		}
-
-		private void writeXmlInFile(Document document, String filePath) {
-			TransformerFactory transformerFactory = TransformerFactory.newDefaultInstance();
-			DOMSource source = new DOMSource(document);
-			Transformer transformer;
-			FileWriter fileWriter;
-
-			try {
-				transformer = transformerFactory.newTransformer();
-				fileWriter = new FileWriter(filePath);
-
-				StreamResult result = new StreamResult(fileWriter);
-				transformer.transform(source, result);
-				StringBuilder infoMsg = new StringBuilder("Exported successfully into a XML file at : ");
-				infoMsg.append(filePath);
-				displayInfoMsg(infoMsg);
-			} catch (Exception e) {
-				LOGGER.severe(e.getMessage());
-			}
-
-		}
-
-		private String createFilePathExport(String fileName) {
-			String directoryPath = getDownloadsDirectory();
-			String filePath = directoryPath + File.separator + fileName;
-
-			// Check if the directory exists or create it
-			File directory = new File(directoryPath);
-			if (!directory.exists() && directory.mkdir()) {
-				LOGGER.info("Directory created successfully.");
-			}
-
-			return filePath;
-		}
-
 		@Override
 		public void actionPerformed(ActionEvent evt) {
 			String actionCommand = evt.getActionCommand();
@@ -356,99 +293,40 @@ public class JDrawingFrame extends JFrame implements MouseListener, MouseMotionL
 					break;
 
 				case EXPORT_JSON:
-					JsonArrayBuilder builder = Json.createArrayBuilder();
+					JsonPersistence jsonPersistence = JsonPersistence.getInstance();
+					List<com.persistence.json.shape.shapes.SimpleShape> list = new ArrayList<>();
 
 					for (SimpleShape s : mDrawnShapes) {
-						Visitable shape = (Visitable) s;
-						JSonVisitor jsonVisitor = new JSonVisitor();
-						shape.accept(jsonVisitor);
-						JsonReader jsonReader = Json.createReader(new StringReader(jsonVisitor.getRepresentation()));
-						JsonObject object = jsonReader.readObject();
-						jsonReader.close();
-						builder.add(object);
+						AppShapeAdapter simpleShapeAdapter = new AppShapeAdapter(s);
+						list.add((com.persistence.json.shape.shapes.SimpleShape) simpleShapeAdapter);
 					}
 
-					JsonArray shapeJsonArray = builder.build();
-					JsonObject allShapesJsonObject = Json.createObjectBuilder().add("shapes", shapeJsonArray).build();
-
-					// write the content into json file
-					writeJsonInFile(allShapesJsonObject, createFilePathExport("allShapes.json"));
-					break;
-
-				case EXPORT_XML:
-					JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setDialogTitle("Select the JSON file to import");
-					fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("JSON file", "json"));
-
-					int userSelection = fileChooser.showOpenDialog(null);
-
-					if (userSelection == JFileChooser.APPROVE_OPTION) {
-						File selectedFile = fileChooser.getSelectedFile();
-						String filePath = selectedFile.getAbsolutePath();
-
-						// Utilisez maintenant le chemin du fichier (filePath) pour votre logique de
-						// lecture JSON
-						System.out.println("Fichier sélectionné : " + filePath);
-
-						try (JsonReader reader = Json.createReader(new FileReader(filePath))) {
-							JsonObject jsonObject = reader.readObject();
-							JsonArray jsonArray = jsonObject.getJsonArray("shapes");
-
-							mDrawnShapes.clear();
-
-							Iterator<JsonValue> it = jsonArray.iterator();
-							while (it.hasNext()) {
-								JsonObject shape = (JsonObject) it.next();
-
-								String type = shape.get("type").toString().toUpperCase();
-								Integer x = Integer.parseInt(shape.get("x").toString());
-								Integer y = Integer.parseInt(shape.get("y").toString());
-
-								ShapeTypes shapeType = ShapeTypes.valueOf(type.substring(1, type.length() -
-										1));
-								ShapeFactory shapeFactory = ShapeFactory.getInstance();
-								SimpleShape newShape = shapeFactory.createShape(shapeType, x, y);
-								mDrawnShapes.add(newShape);
-							}
-
-							resetPanel();
-							drawAllShapes();
-
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-					} else {
-						System.out.println("Aucun fichier sélectionné.");
+					try {
+						jsonPersistence.exportJSON(list);
+					} catch (IOException e) {
+						e.printStackTrace();
 					}
+
 					break;
 
 				case IMPORT_JSON:
 					try {
-						DocumentBuilderFactory factory = DocumentBuilderFactory.newDefaultInstance();
-						factory.setFeature("http://apache.org/xml/features/disallow-doctype-decl",
-								true);
-						DocumentBuilder docBuilder = factory.newDocumentBuilder();
-						Document document = docBuilder.newDocument();
+						JsonPersistence jsonReader = JsonPersistence.getInstance();
+						List<com.persistence.json.shape.shapes.SimpleShape> shapes = jsonReader.importJSON();
+						mDrawnShapes.clear();
+						shapes.forEach(s -> {
+							System.out.println(s);
+							ReaderShapeAdapter rsAdapter = new ReaderShapeAdapter(s);
+							mDrawnShapes.add((SimpleShape) rsAdapter);
+						});
 
-						Element shapesElement = document.createElement("shapes");
-						document.appendChild(shapesElement);
+						resetPanel();
+						drawAllShapes();
 
-						for (SimpleShape s : mDrawnShapes) {
-							Visitable shape = (Visitable) s;
-							XMLVisitor visitor = new XMLVisitor();
-							shape.accept(visitor);
-							InputSource is = new InputSource(new StringReader(visitor.getRepresentation()));
-							Document doc = docBuilder.parse(is);
-							Element element = doc.getDocumentElement();
-							document.adoptNode(element);
-							shapesElement.appendChild(element);
-						}
-
-						// write the content into xml file
-						writeXmlInFile(document, createFilePathExport("allShapes.xml"));
-					} catch (Exception e) {
-						LOGGER.warning(e.getMessage());
+					} catch (FileNotFoundException e) {
+						e.printStackTrace();
 					}
+
 					break;
 
 				default:
